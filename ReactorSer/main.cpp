@@ -11,7 +11,7 @@
 #include <arpa/inet.h>
 
 
-#define SIZE 1024
+#define SIZE 1
 #define PORT 12345
 #define IP_ADDR INADDR_ANY
 
@@ -55,7 +55,7 @@ int main() {
     socklen_t len;
     struct sockaddr_in client_addr;
 	
-	char buff[SIZE];
+	std::string _buff;
 	while(1){		
 		new_fd = accept(_fd, (struct sockaddr *)&client_addr, &len);
 		if (-1 == new_fd)
@@ -64,13 +64,19 @@ int main() {
 			exit(EXIT_FAILURE);
 		}
 		printf("accept\n");
-		memset(buff, 0, SIZE);
-		printf("%d\n",sizeof buff);
 		printf("new_fd : %d\n",new_fd);
-		int length = recv(new_fd, buff, SIZE, 0); 
-		buff[length + 1] = '\0';
+		while(1){		
+			char _tmp_buff[SIZE];
+			memset(_tmp_buff, 0, SIZE);
+			int length = recv(new_fd, _tmp_buff, SIZE, 0); 	
+			if(!length){
+				break;				
+			}
+			_buff += _tmp_buff;
+		}
+						
 		printf("length %d\n",length);
-		printf("%s\n",buff);
+		printf("%s\n",_buff.c_str());
 	}
 
 

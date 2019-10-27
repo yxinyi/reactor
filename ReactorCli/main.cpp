@@ -52,9 +52,7 @@ int main(int argc, char *argv[]) {
 	const char* _target_ip = argv[1];
 	int port = atoi(argv[2]);
 	
-	for(;;){
-		send(_target_ip,port);		
-	}
-	
+	send(_target_ip,port);		
+		
     return 0;
 }
