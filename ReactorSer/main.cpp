@@ -66,16 +66,16 @@ int main() {
 		printf("accept\n");
 		printf("new_fd : %d\n",new_fd);
 		while(1){		
-			char _tmp_buff[SIZE];
-			char _tmp_char[SIZE+1];
+			char _tmp_buff[SIZE+1];
 			memset(_tmp_buff, 0, SIZE);
 			int length = recv(new_fd, _tmp_buff, SIZE, 0); 	
 			if(!length){
 				break;				
 			}
 			printf("length %d\n",length);
+			_tmp_buff += '\0';
+			printf("_tmp_buff %s\n",_tmp_buff.c_str());
 			_buff += _tmp_buff;
-			printf("_buff %s\n",_buff.c_str());
 		}
 						
 		printf("final _buff %s\n",_buff.c_str());
