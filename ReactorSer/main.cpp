@@ -73,10 +73,11 @@ int main() {
 				break;				
 			}
 			printf("length %d\n",length);
+			printf("_tmp_buff %s\n",_tmp_buff);
 			_buff += _tmp_buff;
 		}
 						
-		printf("%s\n",_buff.c_str());
+		printf("_buff %s\n",_buff.c_str());
 	}
 
 
