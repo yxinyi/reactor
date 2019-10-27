@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
         perror("connect");
         exit(EXIT_FAILURE);
     }
-    printf("Connect the server(IP:%s) successed!\n", _target_ip);
+    printf("Connect the server(IP:%s) fd(%d) successed!\n", _target_ip,sockfd);
 	
 	char* buf = "hello world";
 	
