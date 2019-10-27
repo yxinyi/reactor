@@ -64,7 +64,7 @@ int main() {
 			exit(EXIT_FAILURE);
 		}
 		printf("accept\n");
-		memset(buff, '\0', SIZE);
+		memset(buff, 0, SIZE);
 		int length = recv(new_fd, buff, SIZE, 0);  
 		printf("%s",buff);
 	}
