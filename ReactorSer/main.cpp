@@ -68,6 +68,7 @@ int main() {
 		printf("%d\n",sizeof buff);
 		int length = recv(new_fd, buff, SIZE, 0); 
 		buff[length + 1] = '\0';
+		printf("length %d\n",length);
 		printf("%s\n",buff);
 	}
 
