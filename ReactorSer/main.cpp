@@ -74,7 +74,7 @@ int main() {
 			}
 			printf("length %d\n",length);
 			_tmp_buff[SIZE] = '\0';
-			printf("_tmp_buff %s\n",_tmp_buff.c_str());
+			printf("_tmp_buff %s\n",_tmp_buff);
 			_buff += _tmp_buff;
 		}
 						
