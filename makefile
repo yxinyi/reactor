@@ -1,3 +1,3 @@
 all:
-	cd Reactor ; $(MAKE)
+	cd ReactorSer ; $(MAKE)
 	cd ReactorCli ; $(MAKE)
