@@ -10,9 +10,7 @@
 #include <arpa/inet.h>
 #include <errno.h>
 
-void send(const char* ip_, int port_){
-	
-	printf("ip %s port %d \n",_target_ip,port);
+void send(const char* ip_, int port_){	
     //1. create socket
     int sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if(-1 == sockfd)
@@ -26,8 +24,8 @@ void send(const char* ip_, int port_){
     memset(&dest_addr, 0, sizeof(struct sockaddr_in));
     
     dest_addr.sin_family = AF_INET;
-    dest_addr.sin_port = htons(port);
-    dest_addr.sin_addr.s_addr = inet_addr(_target_ip);
+    dest_addr.sin_port = htons(port_);
+    dest_addr.sin_addr.s_addr = inet_addr(ip_);
 	
 	int ret = connect(sockfd, (struct sockaddr *)&dest_addr, sizeof(dest_addr));
 	
@@ -36,7 +34,7 @@ void send(const char* ip_, int port_){
         perror("connect");
         exit(EXIT_FAILURE);
     }
-    printf("Connect the server(IP:%s) fd(%d) successed!\n", _target_ip,sockfd);
+    printf("Connect the server(IP:%s) fd(%d) successed!\n", ip_,sockfd);
 	
 	char* buf = "hello world";
 	
