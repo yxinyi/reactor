@@ -67,7 +67,7 @@ int main() {
 		memset(buff, 0, SIZE);
 		printf("%d\n",sizeof buff);
 		int length = recv(new_fd, buff, SIZE, 0); 
-		buff[length + 1] = '\0'
+		buff[length + 1] = '\0';
 		printf("%s\n",buff);
 	}
 
