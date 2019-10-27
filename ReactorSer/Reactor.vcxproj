@@ -23,6 +23,7 @@
     <ProjectGuid>{190BF939-D1C9-44A0-A2A4-1E39A4EB7496}</ProjectGuid>
     <RootNamespace>Reactor</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <ProjectName>ReactorSer</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

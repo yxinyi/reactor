@@ -8,58 +8,66 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <netinet/ip.h>
+#include <arpa/inet.h>
+
 
 #define SIZE 1024
 #define PORT 12345
 #define IP_ADDR INADDR_ANY
 
 int main() {
-    int _fd = socket(AF_UNIX, SOCK_STREAM, 0);
+    int _fd = socket(AF_INET, SOCK_STREAM, 0);
     if (-1 == _fd)
     {
-        perror("socket");
+        printf("socket");
         exit(EXIT_FAILURE);
     }
+	
+	printf("socket create over \n");
     struct sockaddr_in local_addr;
     memset(&local_addr, 0, sizeof(struct sockaddr_in));
 
     local_addr.sin_family = AF_INET;
     local_addr.sin_port = htons(PORT);
-    local_addr.sin_addr.s_addr = inet_addr(IP_ADDR);
+    local_addr.sin_addr.s_addr = htonl(INADDR_ANY);
 
-    int ret = bind(sockfd, (struct sockaddr *)&local_addr, sizeof(struct sockaddr_in));
+    int ret = bind(_fd, (struct sockaddr *)&local_addr, sizeof(struct sockaddr_in));
     if (-1 == ret)
     {
-        perror("bind");
+        printf("bind");
         exit(EXIT_FAILURE);
     }
+	printf("bind create over \n");
 
 
     unsigned int lisnum = 5;
-    ret = listen(sockfd, lisnum);
+    ret = listen(_fd, lisnum);
     if (-1 == ret)
     {
-        perror("listen");
+        printf("listen");
         exit(EXIT_FAILURE);
     }
+	printf("listen create over \n");
     printf("Wait for client connection!\n");
 
     //4. accept the connection
     int new_fd;
     socklen_t len;
     struct sockaddr_in client_addr;
+	
+	char buff[SIZE];
+	while(1){		
+		new_fd = accept(_fd, (struct sockaddr *)&client_addr, &len);
+		if (-1 == new_fd)
+		{
+			printf("accept");
+			exit(EXIT_FAILURE);
+		}
+		memset(buff, '\0', SIZE);
+		int length = recv(new_fd, buff, SIZE, 0);  
+		printf("%s",buff);
+	}
 
-    new_fd = accept(sockfd, (struct sockaddr *)&client_addr, &len);
-    if (-1 == new_fd)
-    {
-        perror("accept");
-        exit(EXIT_FAILURE);
-    }
-
-    else
-    {
-        //        printf("Server got connection: \n\tAddress:%s\tPort:%d\tSocket=%d\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port), new_fd);
-    }
 
     std::cout << "ser rdy" << std::endl;
     return 0;
