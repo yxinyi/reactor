@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
 	
 	char* buf = "hello world";
 	
-	int len = send(sockfd, buf, sizeof(buf), 0);
+	int len = send(sockfd, buf, strlen(buf), 0);
 	
     return 0;
 }
