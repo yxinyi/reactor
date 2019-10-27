@@ -10,18 +10,8 @@
 #include <arpa/inet.h>
 #include <errno.h>
 
-
-int main(int argc, char *argv[]) {
+void send(const char* ip_, int port_){
 	
-	if(argc != 3){
-		printf("input  ip port \n");
-		return 0;
-	}
-	printf("argc %d \n",argc);
-	const char* _target_ip = argv[1];
-	int port = atoi(argv[2]);
-	
-
 	printf("ip %s port %d \n",_target_ip,port);
     //1. create socket
     int sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -51,6 +41,22 @@ int main(int argc, char *argv[]) {
 	char* buf = "hello world";
 	
 	int len = send(sockfd, buf, strlen(buf), 0);
+	
+}
+
+int main(int argc, char *argv[]) {
+	
+	if(argc != 3){
+		printf("input  ip port \n");
+		return 0;
+	}
+	printf("argc %d \n",argc);
+	const char* _target_ip = argv[1];
+	int port = atoi(argv[2]);
+	
+	for(;;){
+		send(_target_ip,port);		
+	}
 	
     return 0;
 }
