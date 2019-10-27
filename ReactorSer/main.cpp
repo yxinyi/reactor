@@ -9,6 +9,9 @@
 #include <netinet/in.h>
 #include <netinet/ip.h>
 
+#define SIZE 1024
+#define PORT 12345
+#define IP_ADDR INADDR_ANY
 
 int main() {
     int _fd = socket(AF_UNIX, SOCK_STREAM, 0);
