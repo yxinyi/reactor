@@ -72,10 +72,10 @@ int main() {
 			if(!length){
 				break;				
 			}
+			printf("length %d\n",length);
 			_buff += _tmp_buff;
 		}
 						
-		printf("length %d\n",length);
 		printf("%s\n",_buff.c_str());
 	}
 
